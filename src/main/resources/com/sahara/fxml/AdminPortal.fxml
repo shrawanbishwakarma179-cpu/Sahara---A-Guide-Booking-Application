@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.sahara.controller.AdminPortalController"
+            style="-fx-background-color: #1a1a2e;">
+
+    <!-- TOP BAR -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20"
+              style="-fx-background-color: #16213e; -fx-padding: 14 20 14 20;">
+            <Label text="🏔 SAHARA" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #e94560;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="welcomeLabel" style="-fx-text-fill: white; -fx-font-size: 13px;"/>
+            <Button text="Logout" onAction="#handleLogout"
+                    style="-fx-background-color: #e94560; -fx-text-fill: white; -fx-background-radius: 6; -fx-padding: 6 14;"/>
+        </HBox>
+    </top>
+
+    <center>
+        <TabPane tabClosingPolicy="UNAVAILABLE"
+                 style="-fx-background-color: #1a1a2e; -fx-tab-min-width: 140px;">
+
+            <!-- ====== DASHBOARD ====== -->
+            <Tab text="Dashboard">
+                <VBox spacing="20" style="-fx-padding: 30; -fx-background-color: #1a1a2e;" alignment="TOP_CENTER">
+                    <Label text="System Overview"
+                           style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                    <HBox spacing="20" alignment="CENTER">
+                        <VBox alignment="CENTER" spacing="8" prefWidth="180" prefHeight="100"
+                              style="-fx-background-color: #16213e; -fx-background-radius: 10; -fx-padding: 20;">
+                            <Label fx:id="totalBookingsLabel" text="Total Bookings: 0"
+                                   style="-fx-text-fill: #e94560; -fx-font-size: 16px; -fx-font-weight: bold;"/>
+                        </VBox>
+                        <VBox alignment="CENTER" spacing="8" prefWidth="180" prefHeight="100"
+                              style="-fx-background-color: #16213e; -fx-background-radius: 10; -fx-padding: 20;">
+                            <Label fx:id="totalTouristsLabel" text="Total Tourists: 0"
+                                   style="-fx-text-fill: #4caf50; -fx-font-size: 16px; -fx-font-weight: bold;"/>
+                        </VBox>
+                        <VBox alignment="CENTER" spacing="8" prefWidth="180" prefHeight="100"
+                              style="-fx-background-color: #16213e; -fx-background-radius: 10; -fx-padding: 20;">
+                            <Label fx:id="totalGuidesLabel" text="Total Guides: 0"
+                                   style="-fx-text-fill: #f5a623; -fx-font-size: 16px; -fx-font-weight: bold;"/>
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </Tab>
+
+            <!-- ====== MANAGE BOOKINGS ====== -->
+            <Tab text="Bookings">
+                <VBox spacing="12" style="-fx-padding: 16; -fx-background-color: #1a1a2e;">
+                    <Label text="All Bookings — Approve / Reject"
+                           style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                    <TableView fx:id="bookingsTable" VBox.vgrow="ALWAYS"
+                               style="-fx-background-color: #16213e;">
+                        <columns>
+                            <TableColumn fx:id="colBId"      text="ID"       prefWidth="50"/>
+                            <TableColumn fx:id="colBTourist" text="Tourist"  prefWidth="140"/>
+                            <TableColumn fx:id="colBGuide"   text="Guide"    prefWidth="140"/>
+                            <TableColumn fx:id="colBDate"    text="Date"     prefWidth="100"/>
+                            <TableColumn fx:id="colBStatus"  text="Status"   prefWidth="100"/>
+                            <TableColumn fx:id="colBPayment" text="Payment"  prefWidth="100"/>
+                        </columns>
+                    </TableView>
+                    <HBox spacing="12">
+                        <Button text="✔ Approve" onAction="#handleApproveBooking"
+                                style="-fx-background-color: #4caf50; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-padding: 8 20;"/>
+                        <Button text="✖ Reject" onAction="#handleRejectBooking"
+                                style="-fx-background-color: #e94560; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-padding: 8 20;"/>
+                        <Button text="💳 Mark Paid" onAction="#handleMarkPaid"
+                                style="-fx-background-color: #f5a623; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-padding: 8 20;"/>
+                    </HBox>
+                </VBox>
+            </Tab>
+
+            <!-- ====== MANAGE TOURISTS ====== -->
+            <Tab text="Tourists">
+                <VBox spacing="12" style="-fx-padding: 16; -fx-background-color: #1a1a2e;">
+                    <Label text="Registered Tourists"
+                           style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                    <TableView fx:id="touristsTable" VBox.vgrow="ALWAYS"
+                               style="-fx-background-color: #16213e;">
+                        <columns>
+                            <TableColumn fx:id="colTId"    text="ID"     prefWidth="60"/>
+                            <TableColumn fx:id="colTName"  text="Name"   prefWidth="180"/>
+                            <TableColumn fx:id="colTEmail" text="Email"  prefWidth="220"/>
+                            <TableColumn fx:id="colTPhone" text="Phone"  prefWidth="140"/>
+                        </columns>
+                    </TableView>
+                    <Button text="🗑 Delete Tourist" onAction="#handleDeleteTourist"
+                            style="-fx-background-color: #e94560; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-padding: 8 20;"/>
+                </VBox>
+            </Tab>
+
+            <!-- ====== MANAGE GUIDES ====== -->
+            <Tab text="Guides">
+                <VBox spacing="12" style="-fx-padding: 16; -fx-background-color: #1a1a2e;">
+                    <Label text="Registered Guides"
+                           style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                    <TableView fx:id="guidesTable" VBox.vgrow="ALWAYS"
+                               style="-fx-background-color: #16213e;">
+                        <columns>
+                            <TableColumn fx:id="colGId"     text="ID"           prefWidth="60"/>
+                            <TableColumn fx:id="colGName"   text="Name"         prefWidth="160"/>
+                            <TableColumn fx:id="colGEmail"  text="Email"        prefWidth="200"/>
+                            <TableColumn fx:id="colGAvail"  text="Availability" prefWidth="120"/>
+                            <TableColumn fx:id="colGRating" text="Rating"       prefWidth="80"/>
+                        </columns>
+                    </TableView>
+                    <Button text="🗑 Delete Guide" onAction="#handleDeleteGuide"
+                            style="-fx-background-color: #e94560; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-padding: 8 20;"/>
+                </VBox>
+            </Tab>
+
+            <!-- ====== MANAGE TOURS ====== -->
+            <Tab text="Tour Packages">
+                <VBox spacing="14" style="-fx-padding: 16; -fx-background-color: #1a1a2e;">
+                    <Label text="Tour Package Management"
+                           style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+
+                    <!-- Add New Tour form -->
+                    <HBox spacing="10" alignment="CENTER_LEFT"
+                          style="-fx-background-color: #16213e; -fx-padding: 14; -fx-background-radius: 8;">
+                        <Label text="ID:" style="-fx-text-fill: #a0a0c0;"/>
+                        <TextField fx:id="newTourIdField" prefWidth="70" promptText="P010"
+                                   style="-fx-background-color: #0f3460; -fx-text-fill: white; -fx-padding: 6;"/>
+                        <Label text="Name:" style="-fx-text-fill: #a0a0c0;"/>
+                        <TextField fx:id="newTourNameField" prefWidth="160" promptText="Tour name"
+                                   style="-fx-background-color: #0f3460; -fx-text-fill: white; -fx-padding: 6;"/>
+                        <Label text="Duration:" style="-fx-text-fill: #a0a0c0;"/>
+                        <TextField fx:id="newTourDurationField" prefWidth="90" promptText="3 days"
+                                   style="-fx-background-color: #0f3460; -fx-text-fill: white; -fx-padding: 6;"/>
+                        <Label text="Price $:" style="-fx-text-fill: #a0a0c0;"/>
+                        <TextField fx:id="newTourPriceField" prefWidth="80" promptText="200"
+                                   style="-fx-background-color: #0f3460; -fx-text-fill: white; -fx-padding: 6;"/>
+                        <Button text="+ Add" onAction="#handleAddTour"
+                                style="-fx-background-color: #4caf50; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-padding: 7 16;"/>
+                    </HBox>
+                    <Label fx:id="tourStatus" text="" style="-fx-text-fill: #e94560;"/>
+
+                    <TableView fx:id="toursTable" VBox.vgrow="ALWAYS"
+                               style="-fx-background-color: #16213e;">
+                        <columns>
+                            <TableColumn fx:id="colPId"       text="ID"       prefWidth="70"/>
+                            <TableColumn fx:id="colPName"     text="Package"  prefWidth="220"/>
+                            <TableColumn fx:id="colPDuration" text="Duration" prefWidth="120"/>
+                            <TableColumn fx:id="colPPrice"    text="Price ($)" prefWidth="100"/>
+                        </columns>
+                    </TableView>
+                    <Button text="🗑 Delete Tour" onAction="#handleDeleteTour"
+                            style="-fx-background-color: #e94560; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-padding: 8 20;"/>
+                </VBox>
+            </Tab>
+
+        </TabPane>
+    </center>
+</BorderPane>

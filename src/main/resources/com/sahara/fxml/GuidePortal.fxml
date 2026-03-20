@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.sahara.controller.GuidePortalController"
+            style="-fx-background-color: #1a1a2e;">
+
+    <!-- TOP BAR -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20"
+              style="-fx-background-color: #16213e; -fx-padding: 14 20 14 20;">
+            <Label text="🏔 SAHARA" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #e94560;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="ratingLabel" style="-fx-text-fill: #f5a623; -fx-font-size: 13px;"/>
+            <Label fx:id="welcomeLabel" style="-fx-text-fill: white; -fx-font-size: 13px;"/>
+            <Button text="Logout" onAction="#handleLogout"
+                    style="-fx-background-color: #e94560; -fx-text-fill: white; -fx-background-radius: 6; -fx-padding: 6 14;"/>
+        </HBox>
+    </top>
+
+    <center>
+        <TabPane tabClosingPolicy="UNAVAILABLE"
+                 style="-fx-background-color: #1a1a2e; -fx-tab-min-width: 160px;">
+
+            <!-- ====== MY BOOKINGS ====== -->
+            <Tab text="My Bookings">
+                <VBox spacing="12" style="-fx-padding: 20; -fx-background-color: #1a1a2e;">
+                    <Label text="Assigned Bookings"
+                           style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                    <TableView fx:id="bookingsTable" VBox.vgrow="ALWAYS"
+                               style="-fx-background-color: #16213e;">
+                        <columns>
+                            <TableColumn fx:id="colBId"      text="ID"       prefWidth="60"/>
+                            <TableColumn fx:id="colTourist"  text="Tourist"  prefWidth="180"/>
+                            <TableColumn fx:id="colDate"     text="Date"     prefWidth="120"/>
+                            <TableColumn fx:id="colStatus"   text="Status"   prefWidth="120"/>
+                            <TableColumn fx:id="colPayment"  text="Payment"  prefWidth="120"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </Tab>
+
+            <!-- ====== MY PROFILE ====== -->
+            <Tab text="My Profile">
+                <VBox spacing="16" style="-fx-padding: 24; -fx-background-color: #1a1a2e;">
+                    <Label text="Update Profile"
+                           style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+
+                    <GridPane hgap="20" vgap="12">
+                        <columnConstraints>
+                            <ColumnConstraints prefWidth="160" halignment="RIGHT"/>
+                            <ColumnConstraints prefWidth="300" hgrow="ALWAYS"/>
+                        </columnConstraints>
+
+                        <Label text="Name:" style="-fx-text-fill: #a0a0c0;" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                        <TextField fx:id="guideNameField" maxWidth="Infinity" GridPane.rowIndex="0" GridPane.columnIndex="1"
+                                   style="-fx-background-color: #0f3460; -fx-text-fill: white; -fx-padding: 8;"/>
+
+                        <Label text="Phone:" style="-fx-text-fill: #a0a0c0;" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                        <TextField fx:id="guidePhoneField" maxWidth="Infinity" GridPane.rowIndex="1" GridPane.columnIndex="1"
+                                   style="-fx-background-color: #0f3460; -fx-text-fill: white; -fx-padding: 8;"/>
+
+                        <Label text="Availability:" style="-fx-text-fill: #a0a0c0;" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                        <ComboBox fx:id="availabilityCombo" maxWidth="Infinity" GridPane.rowIndex="2" GridPane.columnIndex="1"
+                                  style="-fx-background-color: #0f3460; -fx-text-fill: white;"/>
+                    </GridPane>
+
+                    <Label fx:id="profileStatus" text="" style="-fx-text-fill: #4caf50;"/>
+
+                    <Button text="SAVE CHANGES" onAction="#handleUpdateProfile"
+                            style="-fx-background-color: #e94560; -fx-text-fill: white; -fx-font-weight: bold;
+                                   -fx-font-size: 14px; -fx-background-radius: 6; -fx-padding: 10 30;"/>
+                </VBox>
+            </Tab>
+
+            <!-- ====== MY REVIEWS ====== -->
+            <Tab text="My Reviews">
+                <VBox spacing="12" style="-fx-padding: 20; -fx-background-color: #1a1a2e;">
+                    <Label text="Tourist Reviews"
+                           style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                    <TableView fx:id="reviewsTable" VBox.vgrow="ALWAYS"
+                               style="-fx-background-color: #16213e;">
+                        <columns>
+                            <TableColumn fx:id="colReviewer"   text="Tourist"  prefWidth="160"/>
+                            <TableColumn fx:id="colRating"     text="Rating"   prefWidth="80"/>
+                            <TableColumn fx:id="colComment"    text="Comment"  prefWidth="300"/>
+                            <TableColumn fx:id="colReviewDate" text="Date"     prefWidth="120"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </Tab>
+
+        </TabPane>
+    </center>
+</BorderPane>

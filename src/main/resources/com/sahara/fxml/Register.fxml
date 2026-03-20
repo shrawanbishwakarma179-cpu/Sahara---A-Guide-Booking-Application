@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.sahara.controller.RegisterController"
+           style="-fx-background-color: #1a1a2e;">
+
+    <VBox alignment="CENTER" spacing="18" maxWidth="420">
+        <padding><Insets top="30" right="40" bottom="30" left="40"/></padding>
+
+        <VBox alignment="CENTER" spacing="4">
+            <Label text="SAHARA" style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #e94560;"/>
+            <Label text="Create an Account" style="-fx-font-size: 13px; -fx-text-fill: #a0a0c0;"/>
+        </VBox>
+
+        <VBox spacing="12" style="-fx-background-color: #16213e; -fx-background-radius: 12; -fx-padding: 28;">
+
+            <VBox spacing="4">
+                <Label text="Register As" style="-fx-text-fill: #a0a0c0; -fx-font-size: 12px;"/>
+                <ComboBox fx:id="roleCombo" maxWidth="Infinity"
+                          style="-fx-background-color: #0f3460; -fx-text-fill: white; -fx-border-color: #e94560; -fx-border-radius: 6; -fx-background-radius: 6;"/>
+            </VBox>
+
+            <VBox spacing="4">
+                <Label text="Full Name" style="-fx-text-fill: #a0a0c0; -fx-font-size: 12px;"/>
+                <TextField fx:id="nameField" promptText="Your full name"
+                           style="-fx-background-color: #0f3460; -fx-text-fill: white; -fx-prompt-text-fill: #606080; -fx-border-color: #e94560; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 8;"/>
+            </VBox>
+
+            <VBox spacing="4">
+                <Label text="Email" style="-fx-text-fill: #a0a0c0; -fx-font-size: 12px;"/>
+                <TextField fx:id="emailField" promptText="Your email address"
+                           style="-fx-background-color: #0f3460; -fx-text-fill: white; -fx-prompt-text-fill: #606080; -fx-border-color: #e94560; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 8;"/>
+            </VBox>
+
+            <VBox spacing="4">
+                <Label text="Phone" style="-fx-text-fill: #a0a0c0; -fx-font-size: 12px;"/>
+                <TextField fx:id="phoneField" promptText="Phone number (optional)"
+                           style="-fx-background-color: #0f3460; -fx-text-fill: white; -fx-prompt-text-fill: #606080; -fx-border-color: #e94560; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 8;"/>
+            </VBox>
+
+            <VBox spacing="4">
+                <Label text="Password" style="-fx-text-fill: #a0a0c0; -fx-font-size: 12px;"/>
+                <PasswordField fx:id="passwordField" promptText="Create a password"
+                               style="-fx-background-color: #0f3460; -fx-text-fill: white; -fx-prompt-text-fill: #606080; -fx-border-color: #e94560; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 8;"/>
+            </VBox>
+
+            <VBox spacing="4">
+                <Label text="Confirm Password" style="-fx-text-fill: #a0a0c0; -fx-font-size: 12px;"/>
+                <PasswordField fx:id="confirmPasswordField" promptText="Repeat your password"
+                               style="-fx-background-color: #0f3460; -fx-text-fill: white; -fx-prompt-text-fill: #606080; -fx-border-color: #e94560; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 8;"/>
+            </VBox>
+
+            <Label fx:id="statusLabel" text="" style="-fx-text-fill: #e94560; -fx-font-size: 12px;"/>
+
+            <Button text="REGISTER" onAction="#handleRegister" maxWidth="Infinity"
+                    style="-fx-background-color: #e94560; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 6; -fx-padding: 10;"/>
+
+            <Button text="← Back to Login" onAction="#handleBackToLogin" maxWidth="Infinity"
+                    style="-fx-background-color: #0f3460; -fx-text-fill: #a0a0c0; -fx-font-size: 12px; -fx-background-radius: 6; -fx-padding: 8;"/>
+        </VBox>
+    </VBox>
+</StackPane>
